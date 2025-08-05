@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        vector<int> v;
+        int a=0,b=0,x=n,y=m;
+        while(n!=0 && m!=0){
+            cout<<nums1[a]<<nums2[b]<<endl;
+            if(nums1[a]>=nums2[b]){
+                v.push_back(nums2[b]);
+                b++; n--;
+              
+            }
+            else{
+                v.push_back(nums1[a]);
+                 a++;m--;
+            }
+        }
+        
+        while(n!=0){
+               v.push_back(nums2[b]);
+                b++; n--;
+        }
+        while(m!=0){
+                v.push_back(nums1[a]);
+                a++;m--;
+        }
+        // for(auto i:v)cout<<i;
+        for(int i=0;i<(x+y);i++){
+            nums1[i]=v[i];
+        }
+    }
+};
