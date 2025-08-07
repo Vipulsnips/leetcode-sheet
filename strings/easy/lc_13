@@ -1,0 +1,68 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        int an=0;
+        for(int i=0;i<s.length();){
+            if(s[i]=='I'){
+                if(s[i+1]=='V'){
+                    an+=4;
+                    i+=2;
+                }
+                else if(s[i+1]=='X'){
+                    an+=9;
+                    i+=2;
+                }
+                else{
+                    an++;
+                    i++;
+                }
+            }
+            else if(s[i]=='X'){
+                if(s[i+1]=='L'){
+                    an+=40;
+                    i+=2;
+                }
+                else if(s[i+1]=='C'){
+                    an+=90;
+                    i+=2;
+                }
+                else{
+                    an+=10;
+                    i++;
+                }
+            }
+            else if(s[i]=='C'){
+                if(s[i+1]=='D'){
+                    an+=400;
+                    i+=2;
+                }
+                else if(s[i+1]=='M'){
+                    an+=900;
+                    i+=2;
+                }
+                else{
+                    an+=100;
+                    i++;
+                }
+            }
+            else if(s[i]=='V'){
+                an+=5;
+                i++;
+            }
+            else if(s[i]=='L'){
+                an+=50;
+                i++;
+            }
+            else if(s[i]=='D'){
+                an+=500;
+                i++;
+            }
+            else {
+                an+=1000;
+                i++;
+            }
+
+        }
+        return an;
+    }
+};
