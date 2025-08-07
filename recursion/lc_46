@@ -1,0 +1,11 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        sort(nums.begin(), nums.end());  // Make sure to start with the smallest lexicographic order
+        do {
+            ans.push_back(nums);  // Add the current permutation
+        } while (next_permutation(nums.begin(), nums.end()));  // Get the next permutation
+        return ans;
+    }
+};
