@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int n) {
+        vector<vector <int> > a;
+        a.push_back({1});
+        if(n==1) return a;
+        a.push_back({1,1});
+        if(n==2) return a;
+        n-=2;int i=1;
+        while(n--){
+            vector<int> b;
+            b.push_back(1);
+            for(int j=0;j<a[i].size()-1;j++){
+                int x=a[i][j] + a[i][j+1];
+                b.push_back(x);
+            }
+            b.push_back(1);
+            i++;
+            a.push_back(b);
+        }
+        return a;
+    }
+};
+
