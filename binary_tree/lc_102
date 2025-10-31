@@ -26,7 +26,7 @@ public:
             vp.push_back(v);
             v.clear();
             if(!q.empty()) {
-                TreeNode * stop= new TreeNode (1001);
+                
                 q.push(stop);
             }
         }
@@ -36,6 +36,7 @@ public:
         if(curr->right) q.push(curr->right);
         }
     }
+    delete stop;
     return vp;
     }
 };
