@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minOperations(int n) {
+        vector <int> a(n+10);
+        a[0]=0;
+        for(int i =1;i<=n;i++){
+            int x= int(log2(i));
+            int sum1=pow(2,x),sum2=pow(2,x+1);
+            sum1=abs(sum1-i); sum2=abs(sum2-i);
+            a[i]=min(a[sum1] +1 , a[sum2]+1);
+        }
+        return a[n];
+    }
+};
