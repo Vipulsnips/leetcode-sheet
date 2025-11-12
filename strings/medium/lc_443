@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int compress(vector<char>& a) {
+        // sort(a.begin(),a.end());
+        int n= a.size() , cnt=1; char curr=a[0] ;
+        for(int i=1;i<n;i++){
+            if(curr == a[i]){
+                cnt++;
+            }
+            else{
+                a.push_back(curr);
+                if(cnt>1){
+                string num= to_string(cnt);
+                for(char it : num) a.push_back(it);
+                }
+                curr=a[i];cnt=1;
+            }
+        }
+        a.push_back(curr);
+        if(cnt>1){
+            string num= to_string(cnt);
+            for(char it : num) a.push_back(it);
+        }
+        a.erase(a.begin(),a.begin()+n);
+        return a.size();
+    }
+};
