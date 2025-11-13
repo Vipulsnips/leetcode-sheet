@@ -1,0 +1,41 @@
+    TreeNode <int> * deletedata(int data, TreeNode<int> * root){
+        if(!root) return NULL;
+        if(data < root->data) {
+            root->left= deletedata(data, root->left);
+            return root;
+        }
+        else if(data > root->data){
+         root->right=deletedata(data,root->right);
+          return root;
+        }
+        else{
+            if(root->left && root->right) {
+                TreeNode<int> * n= findleftmost(root->right);
+                root->data=n->data;
+                root->right=deletedata(root->data , root->right);
+                return root;
+            }
+            else if(root->left) {
+                TreeNode <int> * n = root->left;
+                root->left=NULL;
+                delete(root);
+                return n;
+            }
+            else if(root->right) {
+                TreeNode  <int> * n = root->right;
+                root->right=NULL;
+                delete(root);
+                return n;
+            }
+            else{
+                delete(root);
+                return NULL;
+            }
+        }
+    }
+    TreeNode <int> * findleftmost(TreeNode<int> * root){
+        while(root && root->left){
+            root=root->left;
+        }
+        return root;
+    }
