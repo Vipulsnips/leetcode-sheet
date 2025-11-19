@@ -1,0 +1,45 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int data;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public: 
+    int maxm=INT_MIN;
+    int maxSumBST(TreeNode* root) {
+        info ans=biggestbst(root);
+        return max(maxm,0);
+    }
+    struct info{
+    public:
+    int max,min,sum,isbst;
+    info():max(INT_MIN),min(INT_MAX),sum(0),isbst(1){}
+};
+info biggestbst(TreeNode * root){
+    if(!root) return info();
+    info left= biggestbst(root->left);
+    info right= biggestbst(root->right);
+    info curr;
+    if(left.isbst==1 && right.isbst==1){
+        if((left.max < root->val ) && (right.min>root->val )){
+            curr.isbst=1;
+            curr.max=max(right.max,root->val);
+            curr.min=min(left.min,root->val);
+            curr.sum=root->val+left.sum+right.sum;
+            maxm=max(curr.sum,maxm);
+            return curr;
+        }
+    }
+    curr.isbst=0;
+    curr.max=INT_MAX;
+    curr.min=INT_MIN;
+    curr.sum=max(left.sum, right.sum);
+    return curr;
+}
+};
