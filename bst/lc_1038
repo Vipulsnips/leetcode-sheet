@@ -1,0 +1,30 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* bstToGst(TreeNode* root) {
+        int ans=replacewithgreatervalue(root);
+        return root;
+    }
+    int replacewithgreatervalue(TreeNode * root , int sum=0){
+    if(!root) return 0;
+    int right= replacewithgreatervalue(root->right,sum);
+    if(right==0)
+    root->val+=right+sum;
+    else root->val+=right;
+    int left =replacewithgreatervalue(root->left,root->val);
+    // root->left=left.second
+    if(left)
+    return left;
+    else return root->val;
+}
+};
