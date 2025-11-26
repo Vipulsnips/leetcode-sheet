@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define MOD 1000000007
+#define fastIO \
+    ios::sync_with_stdio(false); \
+    cin.tie(NULL); \
+    cout.tie(NULL); \
+    cout.precision(numeric_limits<double>::max_digits10);
+
+#define ll long long
+
+int main() {
+    fastIO;
+    // ll t;
+    // cin >> t;
+    // while (t--) {
+        ll n,x;
+        cin>>n>>x;
+        ll temp=n;
+        vector<ll> weight,value,back((x+1),0);
+        while(temp--){
+            ll x,y;
+            cin>>x>>y;
+            weight.push_back(x);
+            value.push_back(y);
+        }
+        for(int i=0;i<n;i++){
+            vector<ll> curr(x+1);
+            for(int j=0;j<=x;j++){
+                ll op1=(j-weight[i]>=0)?value[i]+back[j-weight[i]]: 0;
+                ll op2=back[j];
+                curr[j]=max(op1,op2);
+            }
+            back=curr;
+            // for(auto i:back) cout<<i<<" ";
+            // cout<<endl;
+        }
+        cout<<back[x]<<endl;
+}
