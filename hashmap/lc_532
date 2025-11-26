@@ -1,0 +1,17 @@
+#define ll long long
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        map <ll ,ll> mp;
+        for(auto i:nums) mp[i]++;
+        int ans=0;
+        for(auto &i:mp){
+            i.second--;
+            // cout<<k+i.first<<" "<<mp[k+i.first]<<endl;
+            if(mp.count(k+i.first))
+            ans+= (mp[k+i.first] > 0) ?1 : 0;
+            // }
+        }
+        return ans;
+    }
+};
